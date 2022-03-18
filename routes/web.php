@@ -15,9 +15,14 @@
 //     return view('welcome');
 // });
 
-Route::get('/', 'UserController@index');
+// Route::get('/', 'UserController@index');
+Route::get('/', 'ProjectController@getAllProjects');
+Route::get('insertNewProject', 'ProjectController@insertProject');
+
 Route::post('/users', 'UserController@store')->name('users.store');
 Route::delete('/users/{user}', 'UserController@destroy')->name('users.destroy');
 Auth::routes();
+
+
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -14,6 +14,7 @@ class CreateProjectsTable extends Migration
     public function up()
     {
         Schema::create('projects', function (Blueprint $table) {
+
             $table->bigIncrements('id');
             $table->bigInteger('city_id')->unsigned();
             $table->bigInteger('company_id')->unsigned();
@@ -22,14 +23,8 @@ class CreateProjectsTable extends Migration
             $table->dateTime('execution_date');
             $table->integer('is_active');
             $table->timestamps();
-
-            // // 
-            // $table->foreign('user_id')->references('id')->on('users');
-            // $table->foreign('city_id')->references('id')->on('cities');
-            // $table->foreign('company_id')->references('id')->on('companies');
-
-
         });
+        
     }
 
     /**
