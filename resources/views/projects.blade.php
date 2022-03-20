@@ -4,10 +4,12 @@
 
 
 <div class="container-sm">
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-sm-10 mx-auto">
+            <h1 style="text-align: center">Administración de Proyectos</h1>
             <div class="d-flex flex-row-reverse">
-                <input class="btn btn-outline-success " type="button" value="Nuevo">
+                <a href="{{ route('new.create') }}" class="btn btn-outline-success">Nuevo</a>
+                {{-- {{ route('projects.create') }} --}}
             </div>
             <table class="table">
                 <thead>

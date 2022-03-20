@@ -12,12 +12,15 @@
 */
 
 // Route::get('/', function () {
-//     return view('welcome');
+//     return view('home');
 // });
 
+Route::get('/', 'HomeController@index')->name('home');
+
+
 // Route::get('/', 'UserController@index');
-Route::get('/', 'ProjectController@getAllProjects');
-Route::get('insertNewProject', 'ProjectController@insertProject');
+Route::resource('new', 'ProjectController');
+Route::get('insertNewProject', 'ProjectController@create');
 
 Route::post('/users', 'UserController@store')->name('users.store');
 Route::delete('/users/{user}', 'UserController@destroy')->name('users.destroy');
@@ -25,4 +28,4 @@ Auth::routes();
 
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
