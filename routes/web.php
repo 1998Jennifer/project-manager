@@ -20,6 +20,8 @@ Route::get('/', 'HomeController@index')->name('home');
 
 // Route::get('/', 'UserController@index');
 Route::resource('new', 'ProjectController');
+Route::resource('city', 'CityController');
+
 Route::get('insertNewProject', 'ProjectController@create');
 
 Route::post('/users', 'UserController@store')->name('users.store');

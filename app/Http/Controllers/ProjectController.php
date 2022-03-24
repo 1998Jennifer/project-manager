@@ -19,10 +19,10 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::get();
-        // return view('projects', compact($projects));
-        return view('projects', [
-            'projects' => $projects
-        ]);
+        return view('projects', compact("projects"));
+        // return view('projects', [
+        //     'projects' => $projects
+        // ]);
     }
 
     /**
@@ -49,15 +49,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-
-        $is_Active_c = $request->is_active;
-        if($is_Active_c == 'on'){
-            $active = 1;
-        }else{
-            $active = 0;
-        }
-        // dd($project);
-        // dd($request->all());
+        
 
         $project = new Project;
         $project->city_id = $request->city;
@@ -65,15 +57,10 @@ class ProjectController extends Controller
         $project->user_id = auth()->user()->id;
         $project->name = $request->name;
         $project->execution_date = $request->execution_date;
-        $project->is_active = $active;
+        $project->is_active = $project->is_active == 'on' ? 1 : 0;
+
         $project->save();
         return redirect('new')->with('status', 'Creado con Éxito');
-
-        // $project = Project::create([
-        //     'user_id' => auth()->user()->id
-        // ]+ $request->all());
-
-        // return back()->with('status', 'Creado con Éxito');
     }
 
     /**
@@ -84,7 +71,8 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+
+        
     }
 
     /**
@@ -93,9 +81,14 @@ class ProjectController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $project)
+    public function edit ($project)
     {
-        //
+
+        $project = Project::find($project);   
+        // dd($project);
+        $cities = City::pluck('name', 'id'); 
+        $companies = Company::pluck('name', 'id');
+        return view('edit', compact('project', 'cities','companies' ));
     }
 
     /**
@@ -105,9 +98,20 @@ class ProjectController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request, Project $project, $id)
     {
-        //
+
+        
+        $project  = Project::find($id);
+        $project->city_id = $request->city;
+        $project->company_id = $request->company;
+        $project->user_id = auth()->user()->id;
+        $project->name = $request->name;
+        $project->execution_date = $request->execution_date;
+        $is_Active_c = $request->is_active;
+        $project->is_active = $project->is_active == 'on' ? 1 : 0;
+        $project->save();
+        return redirect("new")->with('status', 'Actualizado con éxito');
     }
 
     /**
@@ -116,8 +120,12 @@ class ProjectController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy(Project $project, $id)
     {
-        //
+        // dd($id);
+        $project = Project::find($id);
+        $project->delete();
+        return back()->with('status', 'Eliminado con éxito');
+        
     }
 }

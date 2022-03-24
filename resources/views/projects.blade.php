@@ -31,10 +31,14 @@
                         <td>{{ $project->company->name }}</td>
                         <td>{{ $project->user->name }}</td>
                         <td>{{ $project->name }}</td>
-                        <td>{{ $project->execution_date }}</td>
-                        <td><input class="btn btn-outline-warning" type="button" value="Editar"></td>
+                        <td>{{ date("Y-m-d", strtotime($project->execution_date)) }}</td>
                         <td>
-                            <form action="{{ route('users.destroy', $project) }}" method="POST">
+                            {{-- <p>{{ $project }}</p> --}}
+                            <a href="{{ route('new.edit', $project) }}" class="btn btn-outline-warning">Editar</a>
+                            {{-- <input class="btn btn-outline-warning" type="button" value="Editar"> --}}
+                        </td>
+                        <td>
+                            <form action="{{ route('new.destroy', $project) }}" method="POST">
                                 @method ('DELETE')
                                 @csrf
                                 <input
