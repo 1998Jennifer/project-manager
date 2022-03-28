@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <h1>Crear ciudad</h1>
+    <h1>Crear Compañía</h1>
     <div class="justify-content-center">
         @if (session('status'))
             <div class="alert alert-success" role="alert">
@@ -11,13 +11,13 @@
             </div>
         @endif
         <form
-            action="{{ route('city.store') }}"
+            action="{{ route('companies.store') }}"
             method="POST"
             enctype="multipart/form-data"
             class="border border-light">
             <div class="form-group">
               <label for="inputAddress">Nombre</label>
-              <input type="text" class="form-control" name="name" placeholder="Manta" required>
+              <input type="text" class="form-control" name="name" placeholder="Example" required>
             </div>
             <div class="form-group">
                 @csrf

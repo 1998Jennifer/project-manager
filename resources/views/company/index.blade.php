@@ -6,9 +6,9 @@
 <div class="container-sm">
     <div class="row justify-content-center">
         <div class="col-sm-10 mx-auto">
-            <h1 style="text-align: center">Administración de Ciudades</h1>
+            <h1 style="text-align: center">Administración de Compañías</h1>
             <div class="d-flex flex-row-reverse">
-                <a href="{{ route('city.create') }}" class="btn btn-outline-success">Nuevo</a> 
+                <a href="{{ route('companies.create') }}" class="btn btn-outline-success">Nuevo</a> 
             </div>
             @if (session('status'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -27,15 +27,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($cities as $city)
+                    @foreach ($companies as $company)
                     <tr>
-                        <td>{{ $city->id }}</td>
-                        <td>{{ $city->name }}</td>
+                        <td>{{ $company->id }}</td>
+                        <td>{{ $company->name }}</td>
                         <td>
-                            <a href="{{ route('city.edit', $city) }}" class="btn btn-outline-warning">Editar</a>
+                            <a href="{{ route('companies.edit', $company) }}" class="btn btn-outline-warning">Editar</a>
                         </td>
                         <td>
-                            <form action="{{ route('city.destroy', $city) }}" method="POST">
+                            <form action="{{ route('companies.destroy', $company) }}" method="POST">
                                 @method ('DELETE')
                                 @csrf
                                 <input
@@ -45,9 +45,7 @@
                                     onclick="return confirm('¿Seguro de eliminar?')">
                             </form>
                         </td>
-                       
                     </tr>
-                        
                     @endforeach
                 </tbody>
 

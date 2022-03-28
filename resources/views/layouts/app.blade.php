@@ -50,6 +50,12 @@
                             @endif
                         @else
                         <li class="nav-item">
+                            <a href="{{route('companies.index')}}" class="nav-link">Compañías</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('city.index')}}" class="nav-link">Ciudades</a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{route('new.index')}}" class="nav-link">Proyectos</a>
                         </li>
                             <li class="nav-item dropdown">
